@@ -9,7 +9,7 @@ idx = 0
 while len(arr)>1:
     if arr[idx] > arr[idx+1]:
         arr.remove(arr[idx+1])
-        index = 0
+        idx = 0
     else:
-        index += 1
+        idx += 1
 print(len(arr))
