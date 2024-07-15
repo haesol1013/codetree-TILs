@@ -11,18 +11,7 @@ s2, e2 = map(int, input().split())
 def delete(arr, s, e):
     # s부터 e범위 까지 False로
     arr[s-1:e] = [False]*(e-s+1)
-
-    # tmp arr initialize
-    tmp = [False]*len(arr)
-
-    # tmp arr 채우기
-    tmp_idx = 0
-    for val in arr:
-        if val:
-            tmp[tmp_idx] = val
-            tmp_idx += 1
-
-    return [val for val in tmp if val]
+    return [val for val in arr if val]
 
 
 arr = delete(arr, s1, e1)
