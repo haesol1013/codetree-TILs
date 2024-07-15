@@ -16,11 +16,11 @@ def delete(arr, s, e):
     tmp = [False]*len(arr)
 
     # tmp arr 채우기
-    tmp_idx = len(arr) - 1
+    tmp_idx = 0
     for val in arr:
         if val:
             tmp[tmp_idx] = val
-            tmp_idx -= 1
+            tmp_idx += 1
 
     return [val for val in tmp if val]
 
