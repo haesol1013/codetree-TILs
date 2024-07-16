@@ -11,14 +11,15 @@ d = list(map(int, input().split()))
 
 # 회전
 def rotate(arr1, arr2, arr3):
+    length = len(arr1)
     target = arr1 + arr2 + arr3
 
     tmp = target[-1]
     for i in range(len(target)-1, 0, -1):
         target[i] = target[i-1]
     target[0] = tmp
-    
-    return target[:3], target[3:6], target[6:]
+
+    return target[:length], target[length:length*2], target[length*2:]
 
 
 for _ in range(t):
