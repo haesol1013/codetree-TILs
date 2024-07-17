@@ -41,6 +41,7 @@ def rotate(direction: str, clockwise=False) -> str:
 
 curr_pos = start_pos
 cnt = 0
+rotate_streak = 0
 # 이동
 while True:
     # 현 위치에서 방향을 고려했을 때 앞 위치
@@ -57,16 +58,24 @@ while True:
     # 벽 앞 -> 반시계 회전
     if is_wall(front_pos):
         direction = rotate(direction)
+        rotate_streak += 1
+
+        if rotate_streak == 4:
+            print(-1)
+            break
+
         continue
 
     # 벽 이어짐 -> 방향 그대로 전진
     if is_wall(diagonal_pos):
+        rotate_streak = 0
         cnt += 1
         curr_pos = front_pos
         # 다시 돌아왔는지 확인
 
     # 벽 안 이어짐 -> 벽의 오른쪽 90도로 이동
     else:
+        rotate_streak = 0
         cnt += 2
         curr_pos = diagonal_pos
         direction = rotate(direction, clockwise=True)
