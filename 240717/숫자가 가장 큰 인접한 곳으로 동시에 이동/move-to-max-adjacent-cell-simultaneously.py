@@ -35,17 +35,21 @@ def move(pos):
 
 # 반복
 for _ in range(t):
-    for i, pos in enumerate(pos_list):
-        pos_list[i] = move(pos)
-
     exist_pos = set()
     del_pos = set()
+    
+    # 구슬 하나씩 이동
+    for i, pos in enumerate(pos_list):
+        pos_list[i] = move(pos)
+    
+    # 중복 체크
     for i, pos in enumerate(pos_list):
         if pos not in exist_pos:
             exist_pos.add(pos)
         else:
             del_pos.add(pos)
-
+    
+    # 중복되지 않은 것만 체크
     pos_list = [pos for pos in pos_list if not pos in del_pos]
 
 # 출력
