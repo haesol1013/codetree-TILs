@@ -15,7 +15,9 @@ def is_empty(arr):
 
 
 while True:
-    if is_empty(matrix[curr_row+1][start:end]):
+    if curr_row+1 == n:
+        break
+    elif is_empty(matrix[curr_row+1][start:end]):
         curr_row += 1
     else:
         break
