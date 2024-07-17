@@ -17,7 +17,7 @@ diagonal = {"r": (1, 1), "d": (1, -1), "l": (-1, -1), "u": (-1, 1)}
 
 # 탈출 가능성 체크
 def is_out(pos: tuple) -> bool:
-    global grid, n
+    global n
     x, y = pos
     return x < 0 or x >= n or y < 0 or y >= n
 
@@ -86,7 +86,6 @@ while True:
         curr_direct = rotate(curr_direct, clockwise=True)
 
     # 이동 후, 현 위치와 시작 위치 and 현 방향과 시작 방향 모두 같다면 종료
-
     if is_same_state():
         print(-1)
         break
