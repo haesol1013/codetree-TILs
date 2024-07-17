@@ -7,8 +7,8 @@ grid = [
 ]
 
 # 변수 설정
-# 1. 현재 방향
-direction = "r"
+# 1. 시작 방향
+start_direct = "r"
 # 2. 방향에 따른 앞
 front = {"r": (0, 1), "d": (1, 0), "l": (0, -1), "u": (-1, 0)}
 # 3. 방향에 따른 대각선
@@ -39,15 +39,18 @@ def rotate(direction: str, clockwise=False) -> str:
         return directions[curr_idx-1] if curr_idx > 0 else directions[3]
 
 
+#초기 설정
 curr_pos = start_pos
+curr_direct = start_direct
 cnt = 0
 rotate_streak = 0
+
 # 이동
 while True:
     # 현 위치에서 방향을 고려했을 때 앞 위치
-    front_pos = tuple(map(sum, zip(curr_pos, front[direction])))
+    front_pos = tuple(map(sum, zip(curr_pos, front[curr_direct])))
     # 현 위치에서 방향을 고래했을 때 대각선 위치
-    diagonal_pos = tuple(map(sum, zip(curr_pos, diagonal[direction])))
+    diagonal_pos = tuple(map(sum, zip(curr_pos, diagonal[curr_direct])))
 
     # 격자 앞 -> 탈출
     if is_out(front_pos):
@@ -57,7 +60,7 @@ while True:
 
     # 벽 앞 -> 반시계 회전
     if is_wall(front_pos):
-        direction = rotate(direction)
+        curr_direct = rotate(curr_direct)
         rotate_streak += 1
 
         if rotate_streak == 4:
@@ -78,9 +81,9 @@ while True:
         rotate_streak = 0
         cnt += 2
         curr_pos = diagonal_pos
-        direction = rotate(direction, clockwise=True)
+        curr_direct = rotate(curr_direct, clockwise=True)
 
-    # 이동 후, 돌아왔는지 확인
-    if curr_pos == start_pos:
+    # 이동 후, 현 위치와 시작 위치 and 현 방향과 시작 방향 모두 같다면 종료
+    if curr_pos == start_pos and curr_direct == start_direct:
         print(-1)
         break
