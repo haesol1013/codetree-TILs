@@ -9,7 +9,7 @@ def choose(cnt=0):
         return
 
     for i in range(1, k+1):
-        if cnt != 0 and cnt >= n-1 and not [j for j in arr if j != i]:
+        if cnt >= 2 and arr[-1] == i and arr[-2] == i:
             continue
 
         arr.append(i)
