@@ -3,17 +3,17 @@ n, m = map(int, input().split())
 arr = []
 
 
-def permutation(curr_num=1, cnt=0):
+def combination(curr_num=1, cnt=0):
     if curr_num == n+1:
         if cnt == m:
             print(*arr)
         return
 
     arr.append(curr_num)
-    permutation(curr_num+1, cnt+1)
+    combination(curr_num+1, cnt+1)
     arr.pop()
 
-    permutation(curr_num+1, cnt)
+    combination(curr_num+1, cnt)
 
 
-permutation()
+combination()
