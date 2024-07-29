@@ -3,10 +3,12 @@ fibo_li = [0, 1, 1] + [-1]*(n-2)
 
 
 def fibo(n):
-    if fibo_li[n] != -1:
-        return fibo_li[n]
+    if fibo_li[n-1] != -1:
+        fibo_li[n] = fibo_li[n-1] + fibo_li[n-2]
     else:
-        return fibo(n-1) + fibo(n-2)
+        fibo_li[n] = fibo(n-1) + fibo(n-2)
+
+    return fibo_li[n]
 
 
 print(fibo(n))
